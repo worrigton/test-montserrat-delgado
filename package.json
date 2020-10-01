@@ -1,0 +1,38 @@
+{
+  "name": "test-montserrat-delgado",
+  "version": "1.0.0",
+  "description": "Frontend Code Challenge",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Montserrat Delgado Alvarez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/worrigton/test-montserrat-delgado/issues"
+  },
+  "homepage": "https://github.com/worrigton/test-montserrat-delgado#readme",
+  "dependencies": {
+    "css-loader": "^4.3.0",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^4.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sass-loader": "^10.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "html-loader": "^1.3.1",
+    "html-webpack-plugin": "^4.5.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

@@ -1,0 +1,13 @@
+%flex-container {
+	display: flex;
+	background-color: DodgerBlue;
+  	font-family: 'Times New Roman', Times, serif;
+}
+
+%blue {
+	color : blue;
+}
+
+html {
+	@extend  %blue; 
+}

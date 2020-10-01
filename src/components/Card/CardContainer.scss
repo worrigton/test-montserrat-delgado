@@ -1,0 +1,9 @@
+@import "../../App.scss"; 
+
+.CardContainer {
+	@extend %flex-container;
+	
+	.title {
+		color : red;
+	}
+} 

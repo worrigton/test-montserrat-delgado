@@ -41,6 +41,12 @@ module.exports = {
 				],
 			},
 		],
+		loaders: [
+			{
+				test: /\.json$/,
+				loader: "json-loader"
+			}
+		],
 	},
 	plugins: [
 		new HtmlWebPackPlugin({

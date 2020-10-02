@@ -1,9 +1,33 @@
 @import "../../App.scss"; 
 
 .CardContainer {
-	@extend %flex-container;
-	
-	.title {
-		color : red;
+	.header {
+		display         : flex;	
+		justify-content : space-between;
 	}
+	.unread, .read {
+		.date {
+			min-width  : 15vw;
+			text-align : end;
+		}
+		.title {
+			font-weight : 600;
+		}
+
+		&:hover {
+			background-color : $blueBG;
+		}
+	}
+	.unread {
+		background-color : $bodyBG;
+		border-left      : solid .3rem $blue;
+
+		.title {
+			color : $blue!important;
+		}
+	}
+	.read {
+		background-color :  white;
+	}
+
 } 

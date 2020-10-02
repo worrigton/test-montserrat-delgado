@@ -22,7 +22,7 @@ const CardContainer = ({
 					</p>
 				</div>
 				<div className="body">
-					<p>{ body }</p>
+					<p className="singleLine">{ body }</p>
 				</div>
 			</div>
 		</div>

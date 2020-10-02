@@ -2,7 +2,8 @@
 $blue      : #03B9ED;
 $red       : #FC3401;
 $grey      : #F4F5F5;
-$greyLigh  : #AAAAAA;
+$white     : #FFFFFF;
+$greyLigh  : #AAAAAA63;
 $fontColor : #3B3D3F;
 $blueBG    : #EEFAFF;
 $bodyBG    : #EEF4F9;
@@ -13,65 +14,97 @@ $breakpoints : (
 	desktop : 1024px
 ) !default;
 
-html {	
-	h1, h2, h3, h4, h5{
-		font-family : 'Helvetica', sans-serif!important;
-		font-weight : 500;
-		font-style  : normal;
-		color       : $fontColor;
+	
+h1, h2, h3, h4, h5{
+	font-family : 'Helvetica', sans-serif!important;
+	font-weight : 500;
+	font-style  : normal;
+	color       : $fontColor;
 
-		&:hover, &.hover{
-			text-decoration : none!important;
-		}
-	}
-
-	a, p, span, b{
-		font-family : 'Helvetica', sans-serif!important;
-		font-size   : 12px;
-		margin      : 5px 0;
-		color       : $fontColor;
-
-		&:hover, &.hover{
-			text-decoration : none!important;
-		}
-	}
-
-	* {
-		box-sizing : border-box;
-		margin     : 0;
-		padding    : 0;
-	}
-
-	.browserUI {
-		display : flex;
-		height  : 100vh;
-		width   : 100vw;
-
-		.content {
-			display          : flex;
-			flex-direction   : column;
-			justify-content  : flex-start;
-			align-items      : flex-start;
-			background-color : $grey;
-
-			width: 60%;
-		}
-		.sidebar {
-			overflow-y  : auto;
-			margin-left : 2px;
-			flex        : 1;
-			z-index     : 1;
-			box-shadow  : 6px 0px 10px $greyLigh;
-		}
-	}
-	.divider {
-		border      : none;
-		height      : 1px;
-		margin      : 0;
-		flex-shrink : 0;
-		background  : $greyLigh;
-	}
-	.p1 {
-		padding : 1rem;
+	&:hover, &.hover{
+		text-decoration : none!important;
 	}
 }
+
+a, p, span, b{
+	font-family : 'Helvetica', sans-serif!important;
+	font-size   : 12px;
+	margin      : 5px 0;
+	color       : $fontColor;
+
+	&:hover, &.hover{
+		text-decoration : none!important;
+	}
+}
+
+* {
+	box-sizing : border-box;
+	margin     : 0;
+	padding    : 0;
+}
+
+.browserUI {
+	display : flex;
+	height  : 100vh;
+	width   : 100vw;
+
+	.content {
+		display          : flex;
+		flex-direction   : column;
+		justify-content  : flex-start;
+		align-items      : flex-start;
+		background-color : $grey;
+		width            : 60vw;
+	}
+	.sidebar {
+		overflow-y  : auto;
+		margin-left : 2px;
+		flex        : 1;
+		z-index     : 1;
+		box-shadow  : 6px 0px 10px $greyLigh;
+	}
+}
+.divider {
+	border      : none;
+	height      : 1px;
+	margin      : 0;
+	flex-shrink : 0;
+	background  : $greyLigh;
+}
+.p1 {
+	padding : 1rem;
+}
+button {
+	display        : inline-block;
+	font-weight    : 400;
+	text-align     : center;
+	white-space    : nowrap;
+	vertical-align : middle;
+	border         : 1px solid transparent;
+	padding        : .375rem .75rem;
+	line-height    : 1.5;
+	margin-right   : 0.5rem;
+}
+.btnDanger {
+	color            : $white ;
+	background-color : $red;
+	border-color     : $red;
+
+	&:hover {
+		background-color : $greyLigh ;
+		border-color     : $greyLigh ;
+	}
+}
+
+.btnOutline {
+	color            : $fontColor;
+	background-color : transparent;
+	background-image : none;
+	border-color     : $fontColor;
+
+	&:hover {
+		background-color : $greyLigh ;
+		border-color     : $greyLigh ;
+	}
+}
+

@@ -11,22 +11,22 @@ module.exports = {
 		publicPath : '/',
 	},
 	resolve: {
-		extensions: [".js", ".jsx"],
+		extensions: [".js", ".jsx",],
 	},
 	module: {
-		rules: [
+		rules : [
 			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: {
-					loader: "babel-loader",
+				test     : /\.(js|jsx)$/,
+				exclude  : /node_modules/,
+				use      : {
+					loader : "babel-loader",
 				},
 			},
 			{
 				test: /\.html$/,
 				use: [
 					{
-						loader: "html-loader",
+						loader : "html-loader",
 					},
 				],
 			},
@@ -40,18 +40,18 @@ module.exports = {
 					"sass-loader",
 				],
 			},
-		],
-		loaders: [
 			{
-				test: /\.json$/,
-				loader: "json-loader"
+				test : /\.json$/,
+				use  : {
+					loader : 'json-loader',
+				}
 			}
 		],
 	},
-	plugins: [
+	plugins : [
 		new HtmlWebPackPlugin({
-			template: "./public/index.html",
-			filename: "./index.html",
+			template : "./public/index.html",
+			filename : "./index.html",
 		}),
 		new MiniCssExtractPlugin({ filename : "css/main.css" }),
 	],

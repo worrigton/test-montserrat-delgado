@@ -1,5 +1,5 @@
-@import "../../App.scss"; 
-
+@import "../../App.scss";
+	
 .CardContainer {
 	.header {
 		display         : flex;	
@@ -27,7 +27,16 @@
 		}
 	}
 	.read {
-		background-color :  white;
+		background-color :$white;
+	}
+
+	.body {
+		.singleLine {
+			width         : 100%;
+			text-overflow : ellipsis;
+			overflow      : hidden;
+			white-space   : pre;
+		}
 	}
 
 } 

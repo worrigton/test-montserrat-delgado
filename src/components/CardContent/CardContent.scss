@@ -1,6 +1,9 @@
 @import "../../App.scss"; 
 
 .CardContent {
-
-
+	width : 100%;
+	.card {
+		padding    : 1rem;
+		background : $white;
+	}
 } 

@@ -1,11 +1,14 @@
 import {
-	REGISTER_EMAIL
+	REGISTER_EMAIL,
+	SET_EMAIL_DETAILS,
 } from "../constants/actionTypes";
 
-const registerEmail = mail => ({ type : REGISTER_EMAIL, mail });
+const registerEmail   = email => ({ type : REGISTER_EMAIL, email });
+const setEmailDetails = email => ({ type : SET_EMAIL_DETAILS, email });
 
 const mailActions = {
-	registerEmail
+	registerEmail,
+	setEmailDetails,
 };
 
 export default mailActions;

@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./CardContainer.scss";
+import "./EmailCard.scss";
 
-const CardContainer = ({
+const EmailCard = ({
 	data : {
 		subject,
 		date,
@@ -11,7 +11,7 @@ const CardContainer = ({
 	}
 }) => {
 	return (
-		<div className="CardContainer">
+		<div className="EmailCard">
 			<div className={`${isReaded ? "read" : "unread"} p1`}>
 				<div className="header">
 					<p className="title">
@@ -29,11 +29,11 @@ const CardContainer = ({
 	);
 };
 
-CardContainer.defaultProps = {
+EmailCard.defaultProps = {
 	isReaded : false,
 	subject  : "",
 	date     : "",
 	body     : "",
 };
 
-export default CardContainer;
+export default EmailCard;

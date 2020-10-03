@@ -3,25 +3,28 @@ import {
 	DELETE_EMAIL,
 	ACTIVE_EMAIL,
 	SEND_SPAN_EMAIL,
+	SET_EMAIL_DETAILS,
 } from "../constants/actionTypes";
 
 import { v4 as uuidv4 } from "uuid";
 
 // estructura de ejemplo para un email
-const email = {
-	from     : "mhallatt0@walmart.com",
-	to       : "cziem0@surveymonkey.com",
-	subject  : "Office Assistant IV",
-	body     : "condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis",
-	date     : "3/31/2017",
+const emailExample = {
+	from     : "example@gmail.com",
+	to       : "fulanito@gmail.com",
+	subject  : "Example",
+	body     : "sdsadsdsdsadsadsadsad sad sads ad sad as",
+	date     : "01/10/2020",
 	isReaded : false,
-	avatar   : "https://robohash.org/dignissimosetsuscipit.jpg?size=50x50&set=set1",
-	tag      : "Indigo",
-	attachements : [{
-		file : "http://dummyimage.com/250x250.jpg/5fa2dd/ffffff",
-		name : "ut_nulla_sed.jpeg"
-	}]
-}
+	avatar   : "",
+	tag      : "",
+	attachements : [
+		{
+			file : "http://dummyimage.com/250x250.jpg/5fa2dd/ffffff",
+			name : "ut_nulla_sed.jpeg",
+		},
+	],
+};
 
 const initialState = {
 	inbox : {
@@ -32,7 +35,8 @@ const initialState = {
 	},
 	trash : {
 		// id : { eamil }
-	}
+	},
+	emailDetails : emailExample,
 };
 
 const mailReducer = (state = initialState, action) => {
@@ -49,6 +53,11 @@ const mailReducer = (state = initialState, action) => {
 					[randomUuid] : action.email,
 				},
 			};
+		case SET_EMAIL_DETAILS : 
+			return {
+				...state,
+				emailDetails : action.email,
+			}
 		default :
 			return state
 	}

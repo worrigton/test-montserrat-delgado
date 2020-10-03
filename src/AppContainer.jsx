@@ -1,13 +1,29 @@
-import React, {useCallback, useState} from "react";
+import React, {useEffect, useCallback, useState} from "react";
 
 import App from "./App"
 
-//const data = require('json-loader!', './services/mail.data.json');
-
 const AppContainer = () => {
-	const [email, setEmail]  = useState({});
+	const [data, setData]   = useState([]);
+	const [email, setEmail] = useState({});
+
+	const fetchDataJson = async (fileUrl) => {
+		try {
+			let data = await fetch(fileUrl);
+			data     = await data.json();
+
+			return data;
+		} catch (error) {
+			console.log(error);
+		}
+	} 
+
+	useEffect(async () => {
+		const response = await fetchDataJson("./src/services/data.json");
+		setData(response);
+	}, []);
 
 	const handle = useCallback(item => () => {
+		console.log(item);
 		setEmail(item);
 	}, []);
 

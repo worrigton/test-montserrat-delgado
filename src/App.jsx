@@ -14,13 +14,13 @@ const App = ({
 	<div className="browserUI">
 		<div className="sidebar">
 			<div className="p1">
-				Inbox  {data.length}
+				<h3>Inbox  {data.length}</h3>
 			</div>
 			<hr className="divider"/>
 			<div className="p1">
-				<input />
+				<input className="schear"/>
 			</div>
-			{ data &&
+			{ data.length !== 0 &&
 				data.map((item) => <>
 					<hr className="divider"/>
 					<div onClick={handle(item)}>
@@ -30,7 +30,9 @@ const App = ({
 			}
 		</div>
 		<div className="content">
-			<CardContent data={email}/>
+			{ Object.entries(email).length !== 0 &&
+				<CardContent data={email}/>
+			}
 		</div>
 	</div>
 );

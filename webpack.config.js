@@ -10,10 +10,10 @@ module.exports = {
 		filename   : "main.js",
 		publicPath : '/',
 	},
-	resolve: {
+	resolve : {
 		extensions: [".js", ".jsx",],
 	},
-	module: {
+	module : {
 		rules : [
 			{
 				test     : /\.(js|jsx)$/,
@@ -23,8 +23,8 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.html$/,
-				use: [
+				test : /\.html$/,
+				use  : [
 					{
 						loader : "html-loader",
 					},
@@ -41,10 +41,8 @@ module.exports = {
 				],
 			},
 			{
-				test : /\.json$/,
-				use  : {
-					loader : 'json-loader',
-				}
+				test   : /\.json$/,
+				loader : 'json-loader',
 			}
 		],
 	},

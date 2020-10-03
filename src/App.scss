@@ -83,19 +83,23 @@ button {
 	border         : 1px solid transparent;
 	padding        : .375rem .75rem;
 	line-height    : 1.5;
-	margin-right   : 0.5rem;
+	margin         : 0.5rem;
+	transition     : all 1s ease;
+
+	&:hover {
+		opacity: 0.7;
+	}
 }
 .btnDanger {
 	color            : $white ;
 	background-color : $red;
-	border-color     : $red;
-
-	&:hover {
-		background-color : $greyLigh ;
-		border-color     : $greyLigh ;
-	}
+	border-color     : $red
 }
-
+.btnInfo {
+	color            : $white ;
+	background-color : $blue;
+	border-color     : $blue;
+}
 .btnOutline {
 	color            : $fontColor;
 	background-color : transparent;

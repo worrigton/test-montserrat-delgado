@@ -17,6 +17,9 @@
 		&:hover {
 			background-color : $blueBG;
 		}
+		&:active {
+			background-color : $bodyBG ;
+		}
 	}
 	.unread {
 		background-color : $bodyBG;

@@ -1,0 +1,9 @@
+@import "../../theme.scss";
+
+.numberEmails {
+	background-color : $red;
+	color            : $white;
+	margin           : 1rem;
+    padding          : 0.3rem 0.5rem;
+    border-radius    : 50%;
+}

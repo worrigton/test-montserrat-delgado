@@ -1,63 +1,119 @@
 import React, {
 	useEffect,
 	useCallback,
-	useState
+	useState,
+	useMemo,
 } from "react";
 import { connect }            from "react-redux";
 import { bindActionCreators } from "redux";
+import _                      from "lodash";
 
 // Import Own Components
-import MailActions  from "../../config/actions/mailActions";
-import EmailCard    from "../EmailCard"
+import MailActions from "../../config/actions/mailActions";
+import ListView    from "./ListView";
+
+const fetchDataJson = async (fileUrl) => {
+	try {
+		let data = await fetch(fileUrl);
+		data     = await data.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const lengthArrayFiltered = (array) => _.filter(array, function(o) { return !o.isReaded; }).length;
+
+const findInArray = (array, filter) => _.filter(array, function(o) { return o.subject.includes(filter); });
 
 const ListViewContainer = ({
-	mailActions
+	mailActions,
+	inbox,
+	spam,
+	trash,
 }) => {
-	const [data, setData]   = useState([]);
-	const [email, setEmail] = useState({});
+	const [data, setData]                       = useState([]);
+	const [listType, setlistType]               = useState("inbox");
+	const [search, setSearch]                   = useState(null);
+	const [mailsNotReadead, setMailsNotReadead] = useState(0);
 
-	const fetchDataJson = async (fileUrl) => {
-		try {
-			let data = await fetch(fileUrl);
-			data     = await data.json();
+	const getNewEmails = useCallback(async () => {
+		const response = await fetchDataJson("./src/services/data.json");
+		const date = new Date();
+		response.map((item) => mailActions.registerEmail({
+			...item,
+			date : date.toString()
+		}));
+	}, []);
 
-			return data;
-		} catch (error) {
-			console.log(error);
-		}
-	} 
+	const handleChangeType =  useCallback((event) => {
+		setlistType(event.target.value);
+	}, []);
+
+	const handleChangeSearch =  useCallback((event) => {
+		setSearch(event.target.value);
+	}, []);
+
+	const handleChangeEmail = useCallback(item => () => {
+		mailActions.setEmailDetails({
+			index  : item,
+			filter : listType.toLowerCase()
+		});
+	}, [listType]);
+
+	const setDate = useCallback((param) => {
+		const date = new Date(param);
+		const options = {
+			hour   : 'numeric',
+			minute : 'numeric',
+			hour12 : true,
+		};
+		return date.toLocaleDateString("es-ES", options);
+	}, []);
 
 	useEffect(() => {
-		(async () => {
-			const response = await fetchDataJson("./src/services/data.json");
-			setData(response);
-		})();
+		getNewEmails();
 	}, []);
 
-	const handle = useCallback(item => () => {
-		console.log("-------------------->", item);
-		mailActions.setEmailDetails(item);
-		setEmail(item);
+	useEffect(() => {
+		const timer = setInterval(() => getNewEmails(), 90000);
+		// return () => clearTimeout(timer);
 	}, []);
+	
+
+	useEffect(() => {
+		let array = [];
+		switch(listType) {
+			case "inbox" :
+				array = inbox;
+				break;
+			case "spam" :
+				array = spam;
+				break;
+			case "trash" :
+				array = trash;
+				break;
+			default:
+				array = inbox;
+		}
+		if (search) {
+			setData(findInArray(array, search));
+		} else {
+			setData(array);
+		}
+		setMailsNotReadead(lengthArrayFiltered(array));
+	}, [listType, inbox, spam, trash, search]);
 
 	return (
-		<div className="sidebar">
-			<div className="p1">
-				<h3>Inbox  {data.length}</h3>
-			</div>
-			<hr className="divider"/>
-			<div className="p1">
-				<input className="schear"/>
-			</div>
-			{ data.length !== 0 &&
-				data.map((item) => <>
-					<hr className="divider"/>
-					<div onClick={handle(item)}>
-						<EmailCard key={item} data={item}/>
-					</div>
-				</>)
-			}
-		</div>
+		<ListView delegations={{
+			data,
+			listType,
+			setDate,
+			handleChangeType,
+			handleChangeSearch,
+			handleChangeEmail,
+			mailsNotReadead,
+		}}/>
 	)
 }
 
@@ -65,4 +121,10 @@ const mapDispatchToProps = dispatch => ({
 	mailActions : bindActionCreators(MailActions, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(ListViewContainer);
+const mapStateToProps = ({ mailReducer }) => ({
+	inbox : mailReducer.inbox,
+	spam  : mailReducer.spam,
+	trash : mailReducer.trash,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListViewContainer);

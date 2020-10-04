@@ -1,17 +1,13 @@
-import React, {
-	useEffect,
-	useCallback,
-	useState
-} from "react";
+import React from "react";
 
 import ListView    from "../../components/ListView"
-import EmailDetails from "../../components/EmailDetails"
+import DetailsView from "../../components/DetailsView"
 
 const InboxPage = () => {	
 	return (
 		<div className="browserUI">
 			<ListView />
-			<EmailDetails />
+			<DetailsView />
 		</div>
 	)
 }

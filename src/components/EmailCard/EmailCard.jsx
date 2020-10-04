@@ -3,11 +3,14 @@ import React from "react";
 import "./EmailCard.scss";
 
 const EmailCard = ({
-	data : {
-		subject,
-		date,
-		body,
-		isReaded,
+	delegations :{
+		setDate,
+		data : {
+			subject,
+			date,
+			body,
+			isReaded,
+		}
 	}
 }) => {
 	return (
@@ -18,7 +21,7 @@ const EmailCard = ({
 						{ subject }
 					</p>
 					<p className="date">
-						{ date }
+						{ setDate(date) }
 					</p>
 				</div>
 				<div className="body">

@@ -1,20 +1,5 @@
+@import "./theme.scss";
 
-$blue      : #03B9ED;
-$red       : #FC3401;
-$grey      : #F4F5F5;
-$white     : #FFFFFF;
-$greyLigh  : #AAAAAA63;
-$fontColor : #3B3D3F;
-$blueBG    : #EEFAFF;
-$bodyBG    : #EEF4F9;
-
-$breakpoints : (
-	phone   : 640px, 
-	tablet  : 768px, 
-	desktop : 1024px
-) !default;
-
-	
 h1, h2, h3, h4, h5{
 	font-family : 'Helvetica', sans-serif!important;
 	font-weight : 500;
@@ -110,5 +95,13 @@ button {
 		background-color : $greyLigh ;
 		border-color     : $greyLigh ;
 	}
+}
+
+.input {
+	width: 100%;
+	padding: 0.5rem;
+	border-radius: 4px;
+	border : solid 0.7px transparent;
+	box-shadow: 0px 0px 7px 0px $fontColor
 }
 

@@ -1,11 +1,12 @@
 @import "../../theme.scss";
 
-.EmailDetails {
+.header {
+	display         : flex;	
+	justify-content : space-between;
+}
+
+.DetailsView {
 	width : 100%;
-	.header {
-		display         : flex;	
-		justify-content : space-between;
-	}
 	.card {
 		padding    : 1rem;
 		background : $white;

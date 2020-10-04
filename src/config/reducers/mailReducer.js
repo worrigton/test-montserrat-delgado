@@ -1,65 +1,67 @@
 import {
 	REGISTER_EMAIL,
 	DELETE_EMAIL,
-	ACTIVE_EMAIL,
-	SEND_SPAN_EMAIL,
+	READY_EMAIL,
+	MOVE_ARRAY_EMAIL,
 	SET_EMAIL_DETAILS,
 } from "../constants/actionTypes";
 
 import { v4 as uuidv4 } from "uuid";
 
-// estructura de ejemplo para un email
-const emailExample = {
-	from     : "example@gmail.com",
-	to       : "fulanito@gmail.com",
-	subject  : "Example",
-	body     : "sdsadsdsdsadsadsadsad sad sads ad sad as",
-	date     : "01/10/2020",
-	isReaded : false,
-	avatar   : "",
-	tag      : "",
-	attachements : [
-		{
-			file : "http://dummyimage.com/250x250.jpg/5fa2dd/ffffff",
-			name : "ut_nulla_sed.jpeg",
-		},
-	],
-};
-
 const initialState = {
-	inbox : {
-		// id : { email }
-	},
-	span : {
-		// id : { email }
-	},
-	trash : {
-		// id : { eamil }
-	},
-	emailDetails : emailExample,
+	inbox        : [],
+	spam         : [],
+	trash        : [],
+	emailDetails : undefined,
 };
 
 const mailReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case REGISTER_EMAIL:
 			const randomUuid = uuidv4();
-			// other implementation
-			// state.inbox[randomUuid] = action.email;
-			// return state;
+			let newInbox = [{
+				...action.email,
+				id : randomUuid,
+			}];
+			newInbox = [...newInbox, ...state.inbox];
 			return {
 				...state,
-				inbox :  {
-					...state.inbox,
-					[randomUuid] : action.email,
-				},
+				inbox : newInbox,
 			};
+
 		case SET_EMAIL_DETAILS : 
 			return {
 				...state,
 				emailDetails : action.email,
 			}
+		case READY_EMAIL :
+			const array = [ ...state[action.email.filter] ];
+			array[action.email.index].isReaded = true;
+			return {
+				...state,
+				[action.email.filter] : array, 
+			};
+		case MOVE_ARRAY_EMAIL :
+			if (action.email.filter === action.destination) {
+				return state;
+			}
+			const element        = state[action.email.filter][action.email.index];
+			let newArray         = [ ...state[action.email.filter] ];
+			let destinationArray = [ ...state[action.destination] ]
+			
+			newArray.splice(action.email.index, 1);
+			destinationArray.push(element);
+
+			return {
+				...state,
+				[action.email.filter] : newArray,
+				[action.destination]  : destinationArray,
+				emailDetails          : undefined, 
+			};
+			
+			//return Object.assign({}, state);
 		default :
-			return state
+			return state;
 	}
 };
 

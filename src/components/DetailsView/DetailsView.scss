@@ -10,12 +10,12 @@
 	.card {
 		padding    : 1rem;
 		background : $white;
+		border     : solid 1px $greyLigh ;
 	}
 	.avatar {
 		width           : 56px;
 		height          : 56px;
 		display         : flex;
-		border-radius   : 50%;
 		justify-content : center;
 		border          : 1px solid $greyLigh;
 		

@@ -16,7 +16,8 @@ const DetailsViewContainer = ({
 	dataEmail,
 	emailDetails,
 }) => {
-	const [data, setData] = useState(null);
+	const [data, setData]     = useState(null);
+	const [readed, setReaded] = useState(false);
 
 	useEffect(() => {
 		if (dataEmail) {	
@@ -24,10 +25,11 @@ const DetailsViewContainer = ({
 		} else {
 			setData(null);
 		}
-	}, [emailDetails, dataEmail]);
+	}, [emailDetails, dataEmail, readed]);
 
 	const handleChangeReady =  useCallback(() => {
 		mailActions.readyEmail(emailDetails);
+		setReaded(!readed);
 	}, [emailDetails]);
 
 	const handleMoveEmail =  useCallback(destination => () => {
@@ -37,6 +39,8 @@ const DetailsViewContainer = ({
 	return (
 		<DetailsView delegations={{
 			data,
+			readed,
+			emailDetails,
 			handleChangeReady,
 			handleMoveEmail,
 		}}/>
